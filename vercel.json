@@ -1,11 +1,15 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    },
-    "commands": {
-      "install": "./install.sh",
-      "build": "npm run build"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "buildCommand": "npm run build"
+      }
     }
+  ],
+  "env": {
+    "NODE_ENV": "production"
   }
 }
