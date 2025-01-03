@@ -1,0 +1,1 @@
+export const resetOutline = "focus-visible:ring-0 focus-visible:ring-offset-0"

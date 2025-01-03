@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+/* Đặt tất cả các @import trước */
+@import "./css/animate.css";
+@import "./css/font-icons.css";
+@import "./css/glightbox.css";
+@import "./css/nice-select2.css";
+@import "./css/swiper-bundle.min.css";
+@import "./css/style.css";
+
+@import "./tailwindCss/tailwind.output.css";
+@import "antd/dist/reset.css";
+@import "leaflet/dist/leaflet.css";
+/* Sau khi import xong, định nghĩa Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Định nghĩa @layer base */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
