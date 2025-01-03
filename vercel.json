@@ -1,0 +1,11 @@
+{
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "commands": {
+      "install": "./install.sh",
+      "build": "npm run build"
+    }
+  }
+}
