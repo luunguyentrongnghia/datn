@@ -251,7 +251,6 @@ const CreatePost = () => {
       }
       const response = await apiCreateTitleDescAI(dataAi);
       if (response.data.success) {
-        console.log(response.data.data);
         const regex =
           /\*\*Tiêu đề\:\*\*\s*(.*?)\s*\n\*\*Mô tả\:\*\*\s*\n([\s\S]+)/;
         const match = response.data.data.match(regex);

@@ -5,7 +5,6 @@ interface propMap {
   address: string;
 }
 const Map: React.FC<propMap> = ({ address }) => {
-  console.log(address);
   const [coordinates, setCoordinates] = useState<{
     latitude: string;
     longitude: string;
@@ -32,7 +31,6 @@ const Map: React.FC<propMap> = ({ address }) => {
   useEffect(() => {
     handleCoordinates();
   }, [address]);
-  console.log(coordinates);
   return (
     <>
       {isLoading ? (

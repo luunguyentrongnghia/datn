@@ -27,6 +27,9 @@ export const CurrentDate = () => {
   const dd = String(today.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 };
+export const formatNumber = (number: Number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
 export const formayPrice = (price: number) => {
   const units = [
     { value: 1000000000, label: "tỷ" },

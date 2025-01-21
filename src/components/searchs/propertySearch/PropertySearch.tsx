@@ -57,6 +57,7 @@ const PropertySearch: React.FC<PopoverRangeProps> = ({
         searchParams.delete("maxSquareMeter");
       }
     }
+    searchParams.delete("page");
     setSearchParams(searchParams);
   };
   return (

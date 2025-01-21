@@ -151,14 +151,12 @@ const TypeProperty = () => {
     ],
   };
   const handleUpdatePropertyType = async (data: any, record: any) => {
-    if (data.name !== record.name) {
-      const response = await apiupdatePropertyType(data, record.id);
-      if (response.data.affected > 0) {
-        toast.success("Cập nhật thành công");
-        getPropertyTypes();
-      } else {
-        toast.error("Lổi không thể cập nhật");
-      }
+    const response = await apiupdatePropertyType(data, record.id);
+    if (response.data.affected > 0) {
+      toast.success("Cập nhật thành công");
+      getPropertyTypes();
+    } else {
+      toast.error("Lổi không thể cập nhật");
     }
   };
   const columns = [
@@ -263,14 +261,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.direction}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -286,14 +279,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.balonDirection}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -309,14 +297,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.floor}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -332,14 +315,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.bedroom}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -355,14 +333,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.bathroom}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -378,14 +351,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.isFurniture}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -401,14 +369,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Road}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -424,14 +387,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Legal}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -447,14 +405,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.ResidentialArea}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -470,14 +423,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Horizontal}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -493,14 +441,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Length}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -516,14 +459,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Land_status}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>
@@ -539,14 +477,9 @@ const TypeProperty = () => {
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          defaultChecked={false}
+                          defaultChecked={record.Deposit_amount}
                           className="block"
                           onChange={(checked) => field.onChange(checked)}
-                          style={{
-                            backgroundColor: field.value
-                              ? "rgb(147 51 234 / var(--tw-bg-opacity))"
-                              : "",
-                          }}
                         />
                       </FormControl>
                     </FormItem>

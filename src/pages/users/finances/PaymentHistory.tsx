@@ -11,8 +11,9 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
-
+import useMeStore from "@/zustand/useMeStore";
 const paymentHistory = () => {
+  const { me, getMe } = useMeStore();
   const transactionType = {
     Recharge: "Nạp tiền",
     BuyPackages: "Mua gói tin",
@@ -180,6 +181,10 @@ const paymentHistory = () => {
   };
   return (
     <div>
+      <div className="flex items-center gap-2">
+        <h1>Số dư:</h1>
+        <p> {formatNumber(me.balance)} VND</p>
+      </div>
       <Space direction="vertical" style={{ width: "100%" }}>
         <Space>
           <Select

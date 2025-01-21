@@ -6,6 +6,7 @@ export const pathnames = {
     typePackage: "typePackage",
     property: "property",
     user: "user",
+    reportProperty: "reportProperty",
   },
   login: "/login",
   register: "/register",

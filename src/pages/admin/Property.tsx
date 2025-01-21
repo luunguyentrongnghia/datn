@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/form";
 import TextArea from "antd/es/input/TextArea";
 import { Button } from "@/components/ui/button";
+import moment from "moment";
 
 const formSchema = () =>
   z.object({
@@ -144,6 +145,11 @@ const Property = () => {
       toast.error(response.data.msg);
     }
   };
+  const handleCopyid = (id: string) => {
+    navigator.clipboard.writeText(id).then(() => {
+      toast.success("Sao chép thành công");
+    });
+  };
   const columns = [
     {
       title: "STT",
@@ -152,10 +158,20 @@ const Property = () => {
       render: (text: any, record: any, index: any) => index + 1, // Sử dụng `index + 1` để đánh số thứ tự
     },
     {
-      title: "Tiêu đề",
-      dataIndex: "title",
-      key: "title",
-      sorter: (a: any, b: any) => a.title.localeCompare(b.title),
+      title: "Mã tin đăng",
+      dataIndex: "id",
+      key: "id",
+      render: (data: any, record: any) => {
+        return (
+          <div className="flex items-center gap-2">
+            <p className={"font-bold "}>{record.id}</p>
+            <i
+              onClick={() => handleCopyid(record.id)}
+              className="fa-regular fa-copy cursor-pointer hover:text-red-500"
+            ></i>
+          </div>
+        );
+      },
     },
     {
       title: "Ảnh",
@@ -172,6 +188,14 @@ const Property = () => {
         return (
           <img className="w-30 h-20 object-cover" src={urlImage} alt={cap} />
         );
+      },
+    },
+    {
+      title: "Loại tin đăng",
+      dataIndex: "property_type_id",
+      key: "property_type_id",
+      render: (data: any, record: any) => {
+        return <p>{record.property_type_id.name}</p>;
       },
     },
     {
@@ -227,6 +251,17 @@ const Property = () => {
             )}
           />
         );
+      },
+    },
+    {
+      title: "Ngày kết thúc",
+      key: "end_date",
+      render: (data: any) => {
+        if (data.end_date !== null) {
+          return moment(data.end_date).format("DD/MM/YYYY HH:mm");
+        } else {
+          return;
+        }
       },
     },
     {

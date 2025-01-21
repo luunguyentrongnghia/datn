@@ -200,9 +200,9 @@ const Inquiries = () => {
                     </div>
                   </div>
                   <div className="flex gap-2 items-center mt-5">
-                    <p className="font-bold text-[20px]">sản phẩm:</p>
+                    <p className="font-bold text-[20px]">tin đăng:</p>
                     <a href={record.url}>
-                      <Button>Chuyển đến sản phẩm</Button>
+                      <Button>Chuyển đến tin đăng</Button>
                     </a>
                   </div>
                   <div className="flex gap-2 items-center mt-5">

@@ -6,6 +6,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { formatNumber } from "@/lib/utils";
 import useMeStore from "@/zustand/useMeStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Radio, Space } from "antd";
@@ -28,7 +29,11 @@ const Payment = () => {
   });
   const { me, getMe } = useMeStore();
   const Payment = async (data: any) => {
-    const response = await apiPayment({ amount: data.money });
+    const response = await apiPayment({
+      amount: data.money,
+      urlClient: window.location.href,
+      urlBe: "https://serverdatn-51lx.onrender.com",
+    });
     console.log(response);
     if (response.data.payUrl) {
       window.open(response.data.payUrl, "_blank");
@@ -149,7 +154,7 @@ const Payment = () => {
                               className="border-b border-border-color-1 p-5 w-full text-base font-bold font-poppins "
                               value={"MOMO"}
                             >
-                              <span>Thanh toán MoMo</span>
+                              <span>MoMo</span>
                               <img
                                 className="ml-40 w-7 h-7 inline-block "
                                 src="/public/momo.png"
@@ -159,13 +164,21 @@ const Payment = () => {
                               className=" border-b border-border-color-1 p-5 w-full text-base font-bold font-poppins"
                               value={"VnPay"}
                             >
-                              VnPay
+                              <span>VnPay</span>
+                              <img
+                                className="ml-40 w-7 h-7 inline-block "
+                                src="/public/vnpay.jpg"
+                              />
                             </Radio>
                             <Radio
                               className="border-b border-border-color-1 p-5 w-full text-base font-bold font-poppins"
                               value={"Paypal"}
                             >
-                              Paypal
+                              <span>Paypal</span>
+                              <img
+                                className="ml-40 w-7 h-7 inline-block "
+                                src="/public/paypal.jpg"
+                              />
                             </Radio>
                           </Space>
                         </Radio.Group>
@@ -201,7 +214,7 @@ const Payment = () => {
                       </span>
                       <span className="leading-1.8 lg:leading-1.8">
                         {" "}
-                        {me.balance} VNĐ
+                        {formatNumber(me.balance)} VNĐ
                       </span>
                     </div>
                   </li>
@@ -213,7 +226,7 @@ const Payment = () => {
                       </span>
                       <span className="leading-1.8 lg:leading-1.8">
                         {" "}
-                        {form.watch("money")} VNĐ
+                        {formatNumber(form.watch("money"))} VNĐ
                       </span>
                     </div>
                   </li>

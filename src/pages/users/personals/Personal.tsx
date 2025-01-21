@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { getBase64 } from "@/lib/fn";
-import { generateDefaultAvatar } from "@/lib/utils";
+import { formatNumber, generateDefaultAvatar } from "@/lib/utils";
 import useAppStore from "@/zustand/useAppStore";
 import useMeStore from "@/zustand/useMeStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -127,7 +127,7 @@ const Personal = () => {
         </div>
         <div>
           <h6 className="text-sm text-secondary-color font-bold mb-0">
-            <span className="leading-1.3">Agent of Property</span>
+            <span className="leading-1.3">Thành viên</span>
           </h6>
           <h2 className="text-xl md:text-22px lg:text-26px xl:text-3xl text-heading-color font-bold mb-10px">
             <span className="leading-1.3 md:leading-1.3 xl:leading-1.3">
@@ -144,15 +144,6 @@ const Personal = () => {
             <li>
               <a
                 className="text-sm flex items-center gap-4 mt-2"
-                href="tel:+0123-456789"
-              >
-                <i className="fa-solid fa-phone"></i>
-                <span className="leading-1.8">+0123-456789</span>
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-sm flex items-center gap-4 mt-2"
                 href="mailto:example@example.com"
               >
                 <i className="fa-solid fa-envelope"></i>
@@ -160,6 +151,10 @@ const Personal = () => {
               </a>
             </li>
           </ul>
+          <div className="flex items-center gap-2 mt-7">
+            <h1 className="text-secondary-color font-bold">Số dư:</h1>
+            <p> {formatNumber(me.balance)} VND</p>
+          </div>
         </div>
       </div>
       <FormProvider {...form}>

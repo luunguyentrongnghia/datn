@@ -32,6 +32,12 @@ const MenuAdmin = [
     path: pathnames.admin.Layout + pathnames.admin.property,
     icon: <i className="fa-solid fa-newspaper"></i>,
   },
+  {
+    id: 6,
+    label: "Báo cáo",
+    path: pathnames.admin.Layout + pathnames.admin.reportProperty,
+    icon: <i className="fa-solid fa-flag"></i>,
+  },
 ];
 
 export default MenuAdmin;

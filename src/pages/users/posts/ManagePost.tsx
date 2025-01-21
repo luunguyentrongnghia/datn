@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { formatNumber } from "@/lib/utils";
 import useAppStore from "@/zustand/useAppStore";
 import useMeStore from "@/zustand/useMeStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -168,6 +169,11 @@ const ManagePost = () => {
     form.setValue("package_type", "");
     setIsModalOpen(false);
   };
+  const handleCopyid = (id: string) => {
+    navigator.clipboard.writeText(id).then(() => {
+      toast.success("Sao chép thành công");
+    });
+  };
   const columns = [
     {
       title: "STT",
@@ -176,11 +182,20 @@ const ManagePost = () => {
       render: (text: any, record: any, index: any) => index + 1, // Sử dụng `index + 1` để đánh số thứ tự
     },
     {
-      title: "Tiêu đề",
-      dataIndex: "title",
-      key: "title",
-      sorter: (a: any, b: any) => a.title.localeCompare(b.title),
-      return: (data: any) => <p className="line-clamp-1">{data}</p>,
+      title: "Mã tin đăng",
+      dataIndex: "id",
+      key: "id",
+      render: (data: any, record: any) => {
+        return (
+          <div className="flex items-center gap-2">
+            <p className={"font-bold "}>{record.id}</p>
+            <i
+              onClick={() => handleCopyid(record.id)}
+              className="fa-regular fa-copy cursor-pointer hover:text-red-500"
+            ></i>
+          </div>
+        );
+      },
     },
     {
       title: "Ảnh",
@@ -197,14 +212,6 @@ const ManagePost = () => {
         return (
           <img className="w-30 h-20 object-cover" src={urlImage} alt={cap} />
         );
-      },
-    },
-    {
-      title: "Loại tin",
-      dataIndex: "listingType",
-      key: "listingType",
-      render: (data: any, record: any) => {
-        return <p>{record.property_type_id.listingType}</p>;
       },
     },
     {
@@ -479,18 +486,22 @@ const ManagePost = () => {
                   <div className="col-span-1 bg-gray-200 flex items-center p-4 text-[15px]">
                     <menu>
                       <li className="my-2">
-                        Số dư của bạn: {me?.balance || 0} VND
+                        Số dư của bạn: {formatNumber(me?.balance || 0)} VND
                       </li>
                       <li className="my-2">
                         Tên gói: {PackageTypeInfor?.name}
                       </li>
                       <li className="my-2">
-                        Giá: {PackageTypeInfor?.price || 0} VND 1 ngày
+                        Giá:{" "}
+                        {formatNumber(Number(PackageTypeInfor?.price) || 0)} VND
+                        / ngày
                       </li>
                       <li className="my-2">
                         Tổng giá:{" "}
-                        {Number(PackageTypeInfor?.price) *
-                          Number(form.watch("displayDays")) || 0}{" "}
+                        {formatNumber(
+                          Number(PackageTypeInfor?.price) *
+                            Number(form.watch("displayDays")) || 0
+                        )}
                         VND
                       </li>
                     </menu>

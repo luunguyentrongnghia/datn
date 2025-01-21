@@ -6,6 +6,7 @@ import { Dashboard, TypeProperty } from "./pages/admin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import PackageType from "./pages/admin/PackageType";
 import Property from "./pages/admin/Property";
+import ReportProperty from "./pages/admin/ReportProperty";
 import User from "./pages/admin/User";
 import { Homepage, News, PublicLayout, PropertyUser } from "./pages/publics";
 import DetailProperty from "./pages/publics/DetailProperty";
@@ -115,6 +116,10 @@ const routes = [
           {
             path: pathnames.admin.user,
             element: <User />,
+          },
+          {
+            path: pathnames.admin.reportProperty,
+            element: <ReportProperty />,
           },
         ],
       },

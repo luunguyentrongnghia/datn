@@ -16,6 +16,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import TextArea from "antd/es/input/TextArea";
 import { FormInput } from "@/components/forms";
@@ -25,16 +26,29 @@ import { toast } from "sonner";
 import CarouselPropertyHorizontal from "@/components/layous/CarouselPropertyHorizontal";
 import ListNewPropertyDetail from "@/components/listProperty/ListNewPropertyDetail";
 import CarouselPropertyDetail from "@/components/layous/CarouselPropertyDetail";
-
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { apicreateReportProperty } from "@/apis/ReportProperty";
+const form2Schema = () =>
+  z.object({
+    reason: z.string().min(1, { message: "trường này là bắt buộc." }),
+  });
 const DetailProperty = () => {
   const { idProperty } = useParams();
   const [property, setProperty] = useState<Listing>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const { me } = useMeStore();
   const form = useForm({
     defaultValues: {
       infor: "",
       message: `Tôi có quan tâm tới tin đăng này: "${window.location.href}" hảy liên hệ lại với tôi`,
+    },
+  });
+  const form2 = useForm({
+    resolver: zodResolver(form2Schema()),
+    defaultValues: {
+      reason: "",
     },
   });
   useEffect(() => {
@@ -93,6 +107,24 @@ const DetailProperty = () => {
       toast.error(createInquiries.data.msg);
     }
   };
+  const handleFormReportProperty = () => {
+    if (me.status === "lock") {
+      toast.error("Hiện không thể dùng được chức năng này");
+    } else {
+      setIsModalOpen2(true);
+    }
+  };
+  const handleReportProperty = async (data: any) => {
+    data.url = window.location.href;
+    data.post = property?.id;
+    const report = await apicreateReportProperty(data);
+    if (report.data.success) {
+      toast.success(report.data.msg);
+      setIsModalOpen2(false);
+    } else {
+      toast.error(report.data.msg);
+    }
+  };
   return (
     <div>
       <section>
@@ -125,6 +157,15 @@ const DetailProperty = () => {
                     </span>
                   </p>
                 </div>
+              </li>
+              <li>
+                <Button
+                  className="bg-red-500"
+                  variant={"button1"}
+                  onClick={handleFormReportProperty}
+                >
+                  Báo cáo
+                </Button>
               </li>
             </ul>
             <div>
@@ -499,6 +540,53 @@ const DetailProperty = () => {
                       <FormControl>
                         <TextArea rows={4} {...field} />
                       </FormControl>
+                    </FormItem>
+                  );
+                }}
+              />
+              <div className="flex justify-end mt-5">
+                <Button
+                  variant={"button1"}
+                  type="submit"
+                  className={"bg-red-500"}
+                >
+                  Gửi
+                </Button>
+              </div>
+            </form>
+          </FormProvider>
+        </Modal>
+      )}
+      {me && (
+        <Modal
+          title="Báo cáo vi phạm"
+          mask={false}
+          style={{
+            top: 200,
+          }}
+          width={500}
+          open={isModalOpen2}
+          onCancel={() => {
+            setIsModalOpen2(false);
+          }}
+          onClose={() => {
+            setIsModalOpen2(false);
+          }}
+          footer={null}
+        >
+          <FormProvider {...form2}>
+            <form onSubmit={form2.handleSubmit(handleReportProperty)}>
+              <FormField
+                name={"reason"}
+                control={form2.control}
+                render={({ field }: { field: any }) => {
+                  return (
+                    <FormItem className="mb-4">
+                      <FormLabel className="text-black">Lý do:</FormLabel>
+                      <FormControl>
+                        <TextArea rows={4} {...field} />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
                   );
                 }}

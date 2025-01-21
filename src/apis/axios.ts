@@ -1,7 +1,9 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL || "http://localhost:3000/api/v1",
+  baseURL:
+    import.meta.env.VITE_SERVER_URL ||
+    "https://serverdatn-51lx.onrender.com/api/v1",
 });
 
 axiosInstance.interceptors.response.use((response) => response);
@@ -60,6 +62,13 @@ export const endpoints = {
     createInquiries: "/inquiries/",
     getInquiries: "/inquiries/",
     updateStatusInquiries: "/inquiries/",
+    delete: "/inquiries/",
+  },
+  ReportProperty: {
+    getReportProperty: "/report-property/",
+    create: "/report-property/",
+    update: "/report-property/",
+    delete: "/report-property/",
   },
   transactions: "/transactions/",
   transactionsExcel: "/transactions/excel",

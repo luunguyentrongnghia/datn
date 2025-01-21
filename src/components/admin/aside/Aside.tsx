@@ -1,6 +1,3 @@
-import { pathnames } from "@/lib/pathnames";
-import React from "react";
-import { Link } from "react-router-dom";
 import MenuAdmin from "./MenuAdmin";
 import { NavLink, useLocation } from "react-router-dom";
 const Aside = () => {
