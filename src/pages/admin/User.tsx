@@ -228,15 +228,15 @@ const User = () => {
                     </div>
                     <div className="flex gap-2 items-center">
                       <p className="font-bold text-[18px]">Tỉnh/Thành:</p>
-                      <p id="address">{record.province.name}</p>
+                      <p id="address">{record?.province?.name}</p>
                     </div>
                     <div className="flex gap-2 items-center">
                       <p className="font-bold text-[18px]">Quận/Huyện:</p>
-                      <p id="address">{record.district.name}</p>
+                      <p id="address">{record.district?.name}</p>
                     </div>
                     <div className="flex gap-2 items-center">
                       <p className="font-bold text-[18px]">Phường/Xã:</p>
-                      <p id="address">{record.ward.name}</p>
+                      <p id="address">{record.ward?.name}</p>
                     </div>
                   </div>
                 </div>

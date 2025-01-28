@@ -50,7 +50,6 @@ const Inquiries = () => {
           `&endDate=${queryValue.endDate}`;
       }
       const response = await apigetInquiries(queryValue);
-      console.log(response);
       if (response.data.success) {
         setInquiries(response.data.data);
         setquery((prev) => ({

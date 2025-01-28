@@ -41,7 +41,6 @@ const Auth = () => {
           emailVerified: response.data.verifield_email,
         });
         const user = await apiCheckNewUser(response.data.email);
-        console.log("user", user);
         if (user.data.hasUser) {
           toast.success(user.data.msg);
           getMe();
@@ -57,7 +56,6 @@ const Auth = () => {
     },
   });
   const handleVerifyOtp = async (otp: string) => {
-    console.log(otp);
     try {
       const response = await apiVerifyOtp(otp);
       if (response.data.success) {

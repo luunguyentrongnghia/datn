@@ -91,7 +91,6 @@ const PackageType = () => {
     }
   };
   const addPackage = async (data: any) => {
-    console.log(data);
     const response = await apicreatePackageType(data);
     if (response.data.success) {
       toast.success(response.data.msg);

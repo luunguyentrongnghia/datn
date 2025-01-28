@@ -32,9 +32,8 @@ const Payment = () => {
     const response = await apiPayment({
       amount: data.money,
       urlClient: window.location.href,
-      urlBe: "https://serverdatn-51lx.onrender.com",
+      urlBe: "https://serverdatn-t112.onrender.com",
     });
-    console.log(response);
     if (response.data.payUrl) {
       window.open(response.data.payUrl, "_blank");
     }

@@ -1,5 +1,4 @@
 import axios, { endpoints } from "./axios";
-
 export const apiGetCredentialsFromAccessToken = (accessToken: string) =>
   axios({
     method: "get",

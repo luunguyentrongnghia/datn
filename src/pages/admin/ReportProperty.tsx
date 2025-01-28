@@ -128,7 +128,6 @@ const ReportProperty = () => {
       dataIndex: "user",
       key: "user",
       render: (data: any, record: any) => {
-        console.log(record);
         return (
           <div className="flex items-center gap-2">
             <Image

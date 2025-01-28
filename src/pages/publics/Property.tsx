@@ -30,7 +30,6 @@ const Property = () => {
       if (idPropertyType) query += `&PropertyTypeId=${idPropertyType}`;
       const response = await apigetProperty(`${query}&${searchParams}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      console.log(response);
       if (response.data.success) {
         setquery((prev) => ({
           ...prev,

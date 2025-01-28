@@ -147,7 +147,6 @@ const ManagePost = () => {
     }));
   };
   const handleDelete = async (data: any) => {
-    console.log(data);
     const response = await apideleteProperty(data.id);
     if (response.data.affected > 0) {
       getPropertys();
@@ -307,7 +306,6 @@ const ManagePost = () => {
                 <button
                   className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600  rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                   aria-label="Edit"
-                  onClick={() => console.log(record)}
                   disabled={record.status === "approved" ? true : false}
                 >
                   <i className="fa-solid fa-pen-to-square fa-lg"></i>

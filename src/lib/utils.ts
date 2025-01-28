@@ -78,7 +78,6 @@ export const geocodeAddress = async (address: string) => {
   const data = await response.json();
 
   if (data && data.length > 0 && data[0]) {
-    console.log(data);
     const latitude = data[0]?.lat;
     const longitude = data[0]?.lon;
     return {

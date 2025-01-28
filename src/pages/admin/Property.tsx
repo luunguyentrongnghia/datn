@@ -91,7 +91,6 @@ const Property = () => {
     }));
   };
   const handleDelete = async (data: any) => {
-    console.log(data);
     const response = await apideleteProperty(data.id);
     if (response.data.affected > 0) {
       getPropertys();

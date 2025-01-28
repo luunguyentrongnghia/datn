@@ -1,9 +1,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
-  baseURL:
-    import.meta.env.VITE_SERVER_URL ||
-    "https://serverdatn-51lx.onrender.com/api/v1",
+  baseURL: import.meta.env.VITE_SERVER_URL,
 });
 
 axiosInstance.interceptors.response.use((response) => response);
@@ -75,9 +73,10 @@ export const endpoints = {
   getRevenueByMonth: "/transactions/ChartPayment",
   payment: "/payment/create",
   external: {
-    getProvinces: "http://localhost:3000/api/v1/province/findAll?",
-    getDistrictsFromIdProvince:
-      "http://localhost:3000/api/v1/district/findAll?",
-    getWardsFromIdDistrict: "http://localhost:3000/api/v1/ward/findAll?",
+    getProvinces: `${import.meta.env.VITE_SERVER_URL}/province/findAll?`,
+    getDistrictsFromIdProvince: `${
+      import.meta.env.VITE_SERVER_URL
+    }/district/findAll?`,
+    getWardsFromIdDistrict: `${import.meta.env.VITE_SERVER_URL}/ward/findAll?`,
   },
 };

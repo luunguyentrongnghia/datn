@@ -101,7 +101,6 @@ const UpdatePost: React.FC<UpdatePostUserProp> = ({
     try {
       const response = await apigetPropertyImage(idProperty);
       if (response.data.success) {
-        console.log(response.data.data);
         setImageProperty(response.data.data);
         setLoading(false);
       }

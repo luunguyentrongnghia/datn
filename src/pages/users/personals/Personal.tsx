@@ -91,7 +91,6 @@ const Personal = () => {
     form.setValue("avatar", avatar);
   };
   const updateSubmit = async (data: any) => {
-    console.log(data);
     const formData = new FormData();
     for (let key in data) {
       if (
